@@ -1,28 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Toggle menu mobile
-    document.querySelector(".hamburger").addEventListener("click", function () {
-        document.getElementById("mobile-menu").classList.toggle("active");
-    });
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeBtn = document.querySelector(".close-btn");
+    const hamburger = document.querySelector(".hamburger");
+    const subMenus = document.querySelectorAll("#mobile-menu .submenu");
 
-    // Tombol close menu mobile
-    document.querySelector(".close-btn").addEventListener("click", function () {
-        document.getElementById("mobile-menu").classList.remove("active");
-    });
+    function toggleMenu() {
+        mobileMenu.classList.toggle("active");
+        if (!mobileMenu.classList.contains("active")) {
+            resetSubMenus(); // Reset submenu jika menu ditutup
+        }
+    }
 
-    // Toggle submenu di Mobile
-    document.querySelectorAll("#mobile-menu .submenu > a").forEach(menu => {
-        menu.addEventListener("click", function (e) {
-            e.preventDefault();
-            this.parentElement.classList.toggle("open");
+    function toggleSubMenu(event) {
+        event.preventDefault();
+        event.target.parentElement.classList.toggle("open");
+    }
+
+    function resetSubMenus() {
+        subMenus.forEach(submenu => {
+            submenu.classList.remove("open");
         });
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+    closeBtn.addEventListener("click", toggleMenu);
+
+    document.querySelectorAll("#mobile-menu .submenu > a").forEach(menu => {
+        menu.addEventListener("click", toggleSubMenu);
     });
 
-    // Toggle submenu di Desktop (mengambang saat diklik)
     document.querySelectorAll(".desktop-menu .submenu > a").forEach(menu => {
         menu.addEventListener("click", function (e) {
             e.preventDefault();
-            let submenu = this.parentElement;
-            submenu.classList.toggle("active");
+            this.parentElement.classList.toggle("active");
         });
     });
 });

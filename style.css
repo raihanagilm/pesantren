@@ -9,6 +9,10 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
 
 body {
     background-color: #f5f5f5;
+    overflow-x: hidden; /* Menghapus scroll bar horizontal */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* HEADER */
@@ -124,7 +128,7 @@ nav ul {
 }
 
 nav ul li {
-    padding: 15px;
+    padding: 10px;
 }
 
 nav ul li a {
@@ -143,7 +147,7 @@ nav ul li a {
     display: block;
 }
 
-/* Jarak submenu mobile lebih dekat ke atasnya */
+/* Reset submenu saat menutup menu */
 #mobile-menu .submenu .sub-menu li {
     padding: 10px;
 }
@@ -154,6 +158,15 @@ nav ul li a {
     font-size: 14px;
     border-top: 1px solid #ddd;
     background: #f8f9fa;
+}
+
+/* FOOTER */
+footer {
+    background: #2d6a4f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto; /* Agar footer tetap di bawah */
 }
 
 /* RESPONSIVE DESIGN */
